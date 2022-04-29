@@ -1,0 +1,10 @@
+#!/bin/bash
+set -eu -o pipefail
+
+basedir=$(pwd)
+
+cargo build --release
+(cd target/release && tar zcf $basedir/fromhocon_linux_amd64.tar.gz fromhocon)
+
+cargo build --release --target=x86_64-unknown-linux-musl
+(cd target/x86_64-unknown-linux-musl/release && tar zcf $basedir/fromhocon_darwin_amd64.tar.gz fromhocon)

@@ -16,7 +16,8 @@ fn main() -> anyhow::Result<()> {
     if args.is_empty() {
         println!("# Usage");
         println!();
-        println!("    fromhocon spec1 spec2 ...");
+        println!("    fromhocon <spec...>");
+        println!("    fromhocon --version");
         println!();
         println!("Where `spec` is one of");
         println!("  - `--stdin` means read HOCON string from stdin");
@@ -24,6 +25,11 @@ fn main() -> anyhow::Result<()> {
         println!("  - `--adhoc <hocon-string>` means take HOCON from `hocon-string`");
         println!();
         println!("Later specs override values of the earlier specs when keys overlap.");
+        return Ok(());
+    }
+
+    if args[0] == "--version" {
+        println!(clap::crate_version!());
         return Ok(());
     }
 
